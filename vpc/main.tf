@@ -43,7 +43,28 @@ resource "aws_route_table" "dev-public-rt" {
 }
 
 resource "aws_route_table_association" "dev-rta-public-subnet1" {
-  subnet_id = aws_subnet.dev-subnet.id
+  subnet_id      = aws_subnet.dev-subnet.id
   route_table_id = aws_route_table.dev-public-rt.id
 }
 
+resource "aws_security_group" "allowssh" {
+  vpc_id = aws_vpc.dev-vpc.id
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = -1
+    cidr_blocks = ["24.106.166.81/32"]
+  }
+
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["24.106.166.81/32"]
+  }
+
+  tags = {
+    Name = "allowssh"
+  }
+}
