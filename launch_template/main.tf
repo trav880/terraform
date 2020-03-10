@@ -18,7 +18,12 @@ resource "aws_autoscaling_group" "web1" {
   desired_capacity   = 1
   max_size           = 1
   min_size           = 1
-
+  tags = [
+    { key                 = "Name"
+      value               = "web1ASG"
+      propagate_at_launch = true
+    }
+  ]
   launch_template {
     id      = aws_launch_template.web1.id
     version = "$Latest"
