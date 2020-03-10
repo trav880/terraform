@@ -62,14 +62,14 @@ resource "aws_security_group" "allowssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["24.106.166.81/32"]
+    cidr_blocks = ["your-ip-here"]
   }
 
   ingress {
     from_port = -1
     to_port   = -1
     protocol  = "icmp"
-    cidr_blocks = ["24.106.166.81/32"]
+    cidr_blocks = ["your-ip-here"]
   }
 
   tags = {
