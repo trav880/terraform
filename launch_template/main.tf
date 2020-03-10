@@ -15,9 +15,9 @@ resource "aws_launch_template" "web1" {
 
 resource "aws_autoscaling_group" "web1" {
   availability_zones = ["us-east-2a", "us-east-2b"]
-  desired_capacity   = 1
+  desired_capacity   = 0
   max_size           = 1
-  min_size           = 1
+  min_size           = 0
   tags = [
     { key                 = "Name"
       value               = "web1ASG"
