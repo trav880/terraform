@@ -48,19 +48,27 @@ resource "aws_route_table_association" "dev-rta-public-subnet1" {
 }
 
 resource "aws_security_group" "allowssh" {
+  name   = "allowssh"
   vpc_id = aws_vpc.dev-vpc.id
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = -1
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["24.106.166.81/32"]
   }
 
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port = -1
+    to_port   = -1
+    protocol  = "icmp"
     cidr_blocks = ["24.106.166.81/32"]
   }
 
