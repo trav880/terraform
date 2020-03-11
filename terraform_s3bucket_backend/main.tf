@@ -38,7 +38,6 @@ resource "aws_dynamodb_table" "terraformlocks" {
     name = "LockID"
     type = "S"
   }
-  
 }
 
 output "s3_bucket_arn" {
